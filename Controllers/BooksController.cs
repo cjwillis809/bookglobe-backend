@@ -25,7 +25,20 @@ namespace bookglobe_backend.Controllers
         public async Task<IActionResult> GetBooks()
         {
             var books = await context.Books.ToListAsync();
-            return new JsonResult(mapper.Map<List<Book>, List<BookDto>>(books));
+            return Ok(mapper.Map<List<Book>, List<BookDto>>(books));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBook(int id)
+        {
+            var book = await context.Books.SingleOrDefaultAsync(b => b.Id == id);
+
+            if (book == null) {
+                return NotFound();
+            }
+
+            var bookDto = mapper.Map<Book, BookDto>(book); 
+            return Ok(book);
         }
     }
 }
