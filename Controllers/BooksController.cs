@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace bookglobe_backend.Controllers
 {
-    [Authorize]
     [Route("api/books")]
+    [Authorize]
     public class BooksController : Controller
     {
         private readonly IMapper mapper;

@@ -99,6 +99,37 @@
 				"description": "POST request for registering a new user"
 			},
 			"response": []
+		},
+		{
+			"name": "Local Login POST",
+			"request": {
+				"url": "https://localhost:5001/api/account/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"tjones\",\n\t\"password\": \"123456\"\n}"
+				},
+				"description": "Login call to log in as an admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Local Logout POST",
+			"request": {
+				"url": "https://localhost:5001/api/account/logout",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": "Logout call"
+			},
+			"response": []
 		}
 	]
 }

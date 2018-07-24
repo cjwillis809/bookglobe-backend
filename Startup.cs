@@ -47,6 +47,12 @@ namespace bookglobe_backend
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
             });
+            services.ConfigureApplicationCookie(options => 
+            {
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.LoginPath = "/account/login";
+                options.SlidingExpiration = false;
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

@@ -54,5 +54,14 @@ namespace bookglobe_backend.Controllers
             }
             return BadRequest(model);
         }
+
+        [Authorize]
+        [HttpPost("logout")]
+        // [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return Ok();
+        }
     }
 }
