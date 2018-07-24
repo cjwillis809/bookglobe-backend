@@ -1,0 +1,33 @@
+{
+	"variables": [],
+	"info": {
+		"name": "BookGlobe",
+		"_postman_id": "699f08e9-489a-afc9-3d7c-9a37e91b345f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Local GET",
+			"request": {
+				"url": "https://localhost:5001/api/books/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "GET call for all books"
+			},
+			"response": []
+		},
+		{
+			"name": "Local GET Book",
+			"request": {
+				"url": "https://localhost:5001/api/books/{{id}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Local GET call for retrieving a book\n\n{{id}} = ID of the book you want to retrieve"
+			},
+			"response": []
+		}
+	]
+}
