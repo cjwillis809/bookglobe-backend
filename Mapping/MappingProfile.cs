@@ -9,6 +9,8 @@ namespace bookglobe_backend.Mapping
         public MappingProfile()
         {
             CreateMap<Book, BookDto>();
+
+            CreateMap<BookDto, Book>().ForMember(br => br.Id, opt => opt.Ignore());
         }
     }
 }

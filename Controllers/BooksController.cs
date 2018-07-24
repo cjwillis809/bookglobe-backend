@@ -59,5 +59,25 @@ namespace bookglobe_backend.Controllers
             var result = mapper.Map<Book, BookDto>(book);
             return Ok(result);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditBook(int id, [FromBody] BookDto modifiedBook)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            
+            var book = await repository.GetBook(id);
+
+            if (book == null)
+                return NotFound();
+
+            mapper.Map<BookDto, Book>(modifiedBook, book);
+
+            await unitOfWork.CompleteAsync();
+
+            book = await repository.GetBook(book.Id);
+            var result = mapper.Map<Book, BookDto>(book);
+            return Ok(result);
+        }
     }
 }

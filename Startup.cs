@@ -14,7 +14,6 @@ using bookglobe_backend.Persistence;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using bookglobe_backend.Core;
-using bookglobe_backend.Persistence;
 
 namespace bookglobe_backend
 {
