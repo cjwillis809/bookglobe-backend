@@ -5,11 +5,13 @@ using bookglobe_backend.Controllers.Dtos;
 using bookglobe_backend.Core;
 using bookglobe_backend.Models;
 using bookglobe_backend.Persistence;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace bookglobe_backend.Controllers
 {
+    [Authorize]
     [Route("api/books")]
     public class BooksController : Controller
     {
@@ -25,6 +27,7 @@ namespace bookglobe_backend.Controllers
         }
 
         [HttpGet()]
+        [AllowAnonymous]
         public async Task<IActionResult> GetBooks()
         {
             var books = await repository.GetBooks();
@@ -32,6 +35,7 @@ namespace bookglobe_backend.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetBook(int id)
         {
             var book = await repository.GetBook(id);

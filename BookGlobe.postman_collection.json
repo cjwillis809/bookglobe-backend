@@ -79,6 +79,26 @@
 				"description": "Local DELETE call to delete a book"
 			},
 			"response": []
+		},
+		{
+			"name": "Local Register POST",
+			"request": {
+				"url": "https://localhost:5001/api/account/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"tjones\",\n\t\"password\": \"123456\"\n}"
+				},
+				"description": "POST request for registering a new user"
+			},
+			"response": []
 		}
 	]
 }

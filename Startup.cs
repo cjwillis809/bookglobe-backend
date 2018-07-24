@@ -14,17 +14,21 @@ using bookglobe_backend.Persistence;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using bookglobe_backend.Core;
+using bookglobe_backend.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace bookglobe_backend
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            Environment = env;
         }
 
         public IConfiguration Configuration { get; }
+        private IHostingEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,6 +37,16 @@ namespace bookglobe_backend
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper();
             services.AddDbContext<GlobeDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddIdentity<BookAdmin, IdentityRole>()
+                .AddEntityFrameworkStores<GlobeDbContext>()
+                .AddDefaultTokenProviders();
+            services.Configure<IdentityOptions>(options => 
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -49,6 +63,7 @@ namespace bookglobe_backend
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
