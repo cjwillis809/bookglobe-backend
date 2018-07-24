@@ -22,7 +22,7 @@ namespace bookglobe_backend.Controllers
         [HttpPost("register")]
         [AllowAnonymous]
         // [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        public async Task<IActionResult> Register([FromBody] AuthModel model)
         {
             if (ModelState.IsValid)
             {
@@ -34,6 +34,23 @@ namespace bookglobe_backend.Controllers
                     return Ok(user);
                 }
                 return StatusCode(500);
+            }
+            return BadRequest(model);
+        }
+
+        [HttpPost("login")]
+        [AllowAnonymous]
+        // [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login([FromBody] AuthModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
+                if (result.Succeeded)
+                {
+                    return Ok(result);
+                }
+                return Unauthorized();
             }
             return BadRequest(model);
         }

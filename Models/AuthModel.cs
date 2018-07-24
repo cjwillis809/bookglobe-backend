@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace bookglobe_backend.Models
 {
-    public class RegisterModel
+    public class AuthModel
     {
         [Required]
         public string Username { get; set; }
