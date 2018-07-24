@@ -63,6 +63,7 @@ namespace bookglobe_backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> EditBook(int id, [FromBody] BookDto modifiedBook)
         {
+            //TODO: Add Unauthorized validation
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             
@@ -78,6 +79,21 @@ namespace bookglobe_backend.Controllers
             book = await repository.GetBook(book.Id);
             var result = mapper.Map<Book, BookDto>(book);
             return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBook(int id)
+        {
+            //TODO: Add Unauthorized validation
+            var book = await repository.GetBook(id);
+
+            if (book == null)
+                return NotFound();
+
+            repository.Remove(book);
+            await unitOfWork.CompleteAsync();
+
+            return Ok(id);
         }
     }
 }

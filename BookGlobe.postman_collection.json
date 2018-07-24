@@ -48,6 +48,37 @@
 				"description": "Local POST call that creates a new Book"
 			},
 			"response": []
+		},
+		{
+			"name": "Local PUT",
+			"request": {
+				"url": "https://localhost:5001/api/books/{{id}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Turtles All the Way Down\",\n    \"author\": \"John Green\",\n    \"coverImage\": null,\n    \"pageLength\": 288,\n    \"genre\": null,\n    \"price\": 13.65\n}"
+				},
+				"description": "Local PUT call to update a book"
+			},
+			"response": []
+		},
+		{
+			"name": "Local DELETE",
+			"request": {
+				"url": "https://localhost:5001/api/books/{{id}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Local DELETE call to delete a book"
+			},
+			"response": []
 		}
 	]
 }
