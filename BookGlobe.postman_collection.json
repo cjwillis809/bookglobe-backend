@@ -28,6 +28,26 @@
 				"description": "Local GET call for retrieving a book\n\n{{id}} = ID of the book you want to retrieve"
 			},
 			"response": []
+		},
+		{
+			"name": "Local POST",
+			"request": {
+				"url": "https://localhost:5001/api/books/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": null,\n    \"author\": null,\n    \"coverImage\": null,\n    \"pageLength\": null,\n    \"genre\": null,\n    \"price\": null\n}"
+				},
+				"description": "Local POST call that creates a new Book"
+			},
+			"response": []
 		}
 	]
 }

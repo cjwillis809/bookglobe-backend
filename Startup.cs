@@ -13,6 +13,8 @@ using Microsoft.Extensions.Options;
 using bookglobe_backend.Persistence;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using bookglobe_backend.Core;
+using bookglobe_backend.Persistence;
 
 namespace bookglobe_backend
 {
@@ -28,6 +30,8 @@ namespace bookglobe_backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper();
             services.AddDbContext<GlobeDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
