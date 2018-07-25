@@ -16,6 +16,8 @@ using AutoMapper;
 using bookglobe_backend.Core;
 using bookglobe_backend.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace bookglobe_backend
 {
@@ -49,11 +51,18 @@ namespace bookglobe_backend
             });
             services.ConfigureApplicationCookie(options => 
             {
+                options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
                 options.LoginPath = "/account/login";
                 options.SlidingExpiration = false;
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(config => 
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                .RequireAuthenticatedUser()
+                                .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
