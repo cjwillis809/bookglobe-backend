@@ -55,6 +55,11 @@ namespace bookglobe_backend
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
                 options.LoginPath = "/account/login";
                 options.SlidingExpiration = false;
+                options.Events.OnRedirectToLogin = context => 
+                {
+                    context.Response.StatusCode = 401;
+                    return Task.CompletedTask;
+                };
             });
             services.AddMvc(config => 
             {
