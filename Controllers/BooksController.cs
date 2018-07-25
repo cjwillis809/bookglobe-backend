@@ -52,7 +52,6 @@ namespace bookglobe_backend.Controllers
         [HttpPost()]
         public async Task<IActionResult> CreateBook([FromBody] BookDto newBook)
         {
-            //TODO: Add Unauthorized validation
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -67,7 +66,6 @@ namespace bookglobe_backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> EditBook(int id, [FromBody] BookDto modifiedBook)
         {
-            //TODO: Add Unauthorized validation
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             
@@ -88,7 +86,6 @@ namespace bookglobe_backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {
-            //TODO: Add Unauthorized validation
             var book = await repository.GetBook(id);
 
             if (book == null)
