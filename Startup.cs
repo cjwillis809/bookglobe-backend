@@ -85,7 +85,9 @@ namespace bookglobe_backend
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseCors(builder =>
-                builder.WithOrigins("http://localhost:3000"));
+                builder.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod());
             app.UseMvc();
         }
     }
