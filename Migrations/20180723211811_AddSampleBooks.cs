@@ -6,7 +6,7 @@ namespace bookglobebackend.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("INSERT INTO Books (Title, Author, PageLength, Price) VALUES ('The Help', 'Kathryn Stockett', 444, 13.80)");
+            migrationBuilder.Sql("INSERT INTO Books (Title, Author, CoverImage, PageLength, Price) VALUES ('The Help', 'Kathryn Stockett', 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ef/Thehelpbookcover.jpg/220px-Thehelpbookcover.jpg', 444, 13.80)");
             migrationBuilder.Sql("INSERT INTO Books (Title, Author, PageLength, Price) VALUES ('Harry Potter and the Sorcerers Stone', 'J.K. Rowling', 320, 15.00)");
             migrationBuilder.Sql("INSERT INTO Books (Title, Author, PageLength, Price) VALUES ('To Kill a Mockingbird', 'Harper Lee', 324, 11.99)");
         }
